@@ -266,7 +266,7 @@ def prs(tk, ptr, exp):
     elif tk[ptr[-1]].ty == "KEY" and tk[ptr[-1]].v == "inc":
         ptr[-1] = ptr[-1] + 1
         fname = prs(tk, ptr, ["IDT"])
-        text = run(fname+".smp")
+        text = run(fname+".ptr")
         tk += tkns(text)
         prs(tk,ptr,[])
     # set the memory size for a program
@@ -339,8 +339,12 @@ def prs(tk, ptr, exp):
 run a file
 """
 def run(fname):
-    with open(fname) as f:
-        text = f.read()
+    try:
+        with open(fname) as f:
+            text = f.read()
+    except:
+        print "Error: {}: No such lib exists".format(fname)
+        sys.exit(1)
     return text
 
 if __name__ == '__main__':
