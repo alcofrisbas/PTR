@@ -1,0 +1,61 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+file_extensions:
+  - ec
+scope: source.example-c
+contexts:
+  main:
+    # Strings begin and end with quotes, and use backslashes as an escape
+    # character
+    - match: '::'
+      scope: comment
+      push: com
+
+    # Comments begin with a '//' and finish at the end of the line
+    
+    - match: '->|--'
+      scope: variable.function
+      push: fn
+
+    - match: '@'
+      scope: storage.modifier
+      #push: fn
+
+    - match: '\$'
+      scope: entity.name
+      push: var
+    
+    - match: '\b(mem|inc|rel|alc|ali)\b'
+      scope: keyword
+
+    # Numbers
+    - match: '\b(-)?[0-9.]+\b'
+      scope: constant.numeric.example-c
+
+    - match: '\*'
+      scope: storage.type
+      push: ptr
+
+  com:
+    - meta_scope: comment 
+    - match: 'TODO'
+      scope: constant.character.escape.example-c
+    - match: '::'
+      scope: comment
+      pop: true
+
+  fn: 
+    - meta_scope: variable.function
+    - match: \s
+      pop: true
+
+  var: 
+    - meta_scope: entity.name
+    - match: \s
+      pop: true
+  ptr: 
+    - meta_scope: storage.type
+    - match: \s
+      pop: true
+
