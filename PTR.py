@@ -98,6 +98,9 @@ def fnd(token):
     if token.ty == "NUM":
         return int(token.v)
     elif token.ty == "VAR":
+        if not var.get(token.v, False):
+            print "Error: variable: {} undefined".format(token.v)
+            sys.exit(1)
         return var[token.v]
     elif token.ty == "ADD":
         newToken = tkns(token.v)[0]

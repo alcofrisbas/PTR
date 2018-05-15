@@ -4,11 +4,9 @@
 mem 45
 inc lib/array
 inc lib/std
-
-:: establish a convention ::
-$arg1 10
-$arg2 11
-$arg3 12
+:: load standard conventions which makes 
+code easier to read ::
+r ->stdCon
 
 alc 1 :: allocate a space in memory ::
 $arr *0 :: make a variable-pointer to that place ::

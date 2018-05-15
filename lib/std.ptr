@@ -1,8 +1,21 @@
-:: endSTD is similar
+:: the label endSTD is similar
 to an IFGUARD in C, 
-which prevents the accidenta
+which prevents the accidental
 execution of the code in this file ::
 j ->endSTD
+:: establish a convention for function 
+arguments that visually easy to process ::
+
+d --stdCon
+$arg1 10
+$arg2 11
+$arg3 12
+$arg4 13
+$arg5 14
+$arg6 15
+e
+
+
 :: output chars from array at address
 in accumulator until reaching a
 null char ::
