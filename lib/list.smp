@@ -1,0 +1,21 @@
+:: the makings of a linkedList ::
+
+:: =============================================
+ideas: a linked list 'link consists of two slots:
+the data and the reference. Making a linked list
+would be two items in memory: the data and the next
+if the 'next' = 0, then said item is tail.
+
+::
+j ->endLST
+:: what does next return?
+an address?... ya ::
+d ->next
+m 0
+a *0 1
+m 1
+
+
+
+
+--endLST

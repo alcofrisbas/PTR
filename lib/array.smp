@@ -1,0 +1,83 @@
+:: contains functions for manipulating arrays ::
+
+:: arrays are simply continuous strings of data ::
+:: the head item of an array simply represents the 
+length of the array ::
+
+:: uses 0-10 ::
+j ->endArray
+
+d --makeArray
+m 0 :: first arg: length ::
+a **0 0
+m 0
+a *0 0
+m 2
+:: now, find a chunk of memory big enough ::
+a *0 1 :: length + 1 ::
+m 1
+alc *1
+@*0 *2
+rel 1 8 :: skip 0th slot bc of return values ::
+e
+
+d --delArray
+@4 3
+m 0 :: array address ::
+a **0 0
+m 0
+@1 **0 :: length of array ::
+a *1 1
+m 1
+rel *0 *1
+rel 0 9 :: cleanup ::
+e
+
+:: address in accumulator ::
+d --lengthArray
+m 0
+a ***0 0
+m 0
+rel 1 8 :: cleanup :: 
+e
+
+:: 
+args: 2
+1. array address
+2. index n
+::
+d --nthItem
+m 0 :: location of arg1 ::
+a *0 1
+m 1 :: location of arg2 ::
+a **0 **1 :: add init location and nth ::
+m 2
+a *2 1
+m 2
+a **2 0 :: move to 0 ::
+m 0
+rel 1 8
+e
+
+:: 
+args: 3 
+1. array address
+2. index
+3. value to add
+::
+d --putItem
+m 0 :: addr of array ::
+a *0 1
+m 1 :: addr of n value ::
+a *0 2
+m 2 :: addr of item to add ::
+a **0 **1
+m 3 :: absolute item address ::
+a *3 1
+m 3
+@*3 **2
+rel 0 9
+e
+
+--endArray
+

@@ -1,0 +1,24 @@
+:: endSTD is similar
+to an IFGUARD in C, 
+which prevents the accidenta
+execution of the code in this file ::
+j ->endSTD
+:: output chars from array at address
+in accumulator until reaching a
+null char ::
+d --print
+m 0
+a **0 1
+m 0 :: add one to the address of the array in memory ::
+--loopPrint
+f **0 0
+j ->endPrint
+o **0
+a *0 1
+m 0 
+j ->loopPrint
+--endPrint
+rel 0 9
+e
+
+--endSTD

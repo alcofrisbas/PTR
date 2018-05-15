@@ -1,0 +1,72 @@
+
+:: now print works ::
+
+mem 45
+inc lib/array
+inc lib/std
+
+:: establish a convention ::
+$arg1 10
+$arg2 11
+$arg3 12
+
+alc 1 :: allocate a space in memory ::
+$arr *0 :: make a variable-pointer to that place ::
+
+@$arg1 6 :: load the desired length of an array into first arg ::
+a $arg1 0 :: load the address of arg1 into accumulator ::
+r ->makeArray :: make the array ::
+@$arr *0 :: update the pointer value of the array. ::
+
+:: now the array can be referred to with a variable ::
+:: h ::
+@$arg1 *$arr 
+@$arg2 0
+@$arg3 104
+
+a $arg1 0
+r ->putItem
+:: e ::
+@$arg1 *$arr 
+@$arg2 1
+@$arg3 101
+
+a $arg1 0
+r ->putItem
+:: l ::
+@$arg1 *$arr 
+@$arg2 2
+@$arg3 108
+
+a $arg1 0
+r ->putItem
+:: l ::
+@$arg1 *$arr 
+@$arg2 3
+@$arg3 108
+
+a $arg1 0
+r ->putItem
+:: o ::
+@$arg1 *$arr 
+@$arg2 4
+@$arg3 111
+
+a $arg1 0
+r ->putItem
+:: \n ::
+@$arg1 *$arr 
+@$arg2 5
+@$arg3 10
+
+a $arg1 0
+r ->putItem
+
+@$arg1 *$arr
+a $arg1 0
+w
+r ->print
+w
+:: delete the array from mem. ::
+a $arg1 0
+r ->delArray
