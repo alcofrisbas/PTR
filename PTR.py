@@ -1,8 +1,8 @@
 """
 +=========================   
-|   A new language designed by Ben Greene in spring 2018
-|   
-|
+|   An esoteric language designed by Ben Greene in spring 2018
+|    
+|   MIT License
 +=========================
 """
 import sys
@@ -60,7 +60,7 @@ def tkns(text):
         elif word == "\n":
             tokens.append(Token("RET", word))
         elif word in ["a", "m", "s","j","f","o","d","r","e","w","l",
-         "inc", "mem", "alc", "rel", "ali", "sl", "sr"]:#"asmjfodrew":
+         "inc", "mem", "alc", "rel", "ali", "sl", "sr"]:
             tokens.append(Token("KEY", word))
         elif "--" in word[:2]:
             tokens.append(Token("LBF", word[2:]))
