@@ -60,7 +60,7 @@ def tkns(text):
         elif word == "\n":
             tokens.append(Token("RET", word))
         elif word in ["a", "m", "s","j","f","o","d","r","e","w","l",
-         "inc", "mem", "alc", "rel", "ali"]:#"asmjfodrew":
+         "inc", "mem", "alc", "rel", "ali", "sl", "sr"]:#"asmjfodrew":
             tokens.append(Token("KEY", word))
         elif "--" in word[:2]:
             tokens.append(Token("LBF", word[2:]))
@@ -167,6 +167,18 @@ def prs(tk, ptr, exp):
         v1 = prs(tk, ptr, ["NUM", "ADD", "VAR"])
         v2 = prs(tk, ptr, ["NUM", "ADD", "VAR"])
         acc[0] = v1 - v2
+        prs(tk, ptr,[])
+
+    elif tk[ptr[-1]].ty == "KEY" and tk[ptr[-1]].v == "sl":
+        ptr[-1] = ptr[-1] + 1
+        v1 = prs(tk, ptr, ["NUM", "ADD", "VAR"])
+        acc[0] = 2*v1
+        prs(tk, ptr,[])
+
+    elif tk[ptr[-1]].ty == "KEY" and tk[ptr[-1]].v == "sr":
+        ptr[-1] = ptr[-1] + 1
+        v1 = prs(tk, ptr, ["NUM", "ADD", "VAR"])
+        acc[0] = v1//2
         prs(tk, ptr,[])
     # move the accumulator to an address in memory ACCESS MEMORY
     elif tk[ptr[-1]].ty == "KEY" and tk[ptr[-1]].v == "m":
