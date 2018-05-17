@@ -78,8 +78,8 @@ allocates a specific spot in memory. This is helpful for allocating data structu
 one slot in memory, like arrays, but should really only be used in lower level functions.
 
 ### Other files
-Including a file is fairly simple. ```inc folder/fileName``` #without the '.ptr'. The file is tokenized
-and added to the end of the tokens to be parsed and executed, so any code not in a function will be 
+Including a file is fairly simple. ```inc folder/fileName``` **without** the '.ptr'. The file is tokenized
+and added to the end of the tokens to be parsed and executed, so any and all code will be 
 executed. Jump statements can form simple ifguards.
 
 ## Examples
