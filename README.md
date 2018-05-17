@@ -73,7 +73,7 @@ is up for grabs.
 
 The command ```alc <VALUE>``` returns the smallest continuous space in memory that is <VALUE> + 1 slots
 in size. Functions by convention return values to the 0 slot. The command ```rel <VAL1> <VAL2>```
-releases <VAL2> slots in memory staring with <VAR1>. The final memory command is ```ali```, which 
+releases VAL2 slots in memory staring with VAR1. The final memory command is ```ali```, which 
 allocates a specific spot in memory. This is helpful for allocating data structures larger than
 one slot in memory, like arrays, but should really only be used in lower level functions.
 
