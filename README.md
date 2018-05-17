@@ -42,7 +42,7 @@ it prints the ascii character of the value.
 ### Arithmetic
 The commands ```a, s``` respectively add and subtract the next
 two tokens. ```sl, sr``` shift left and shift right the next token.
-right the next two tokens. If either of the two arent scalars, pointers, or vars, 
+right the next two tokens. If either of the two aren't scalars, pointers, or vars, 
 an error is thrown. The result is put into the accumulator register. The command ```m```
 moves the value of the accumulator to the value in memory of the following token.
 
