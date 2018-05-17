@@ -4,17 +4,16 @@
 :: the head item of an array simply represents the 
 length of the array ::
 
-:: uses 0-10 ::
+:: uses 0-10 as swap ::
+:: returns to 0 ::
 j ->endArray
 
 d --makeArray
 m 0 :: first arg: length ::
-a **0 0
-m 0
-a *0 0
-m 2
+@0 **0 
+@2 *0
 :: now, find a chunk of memory big enough ::
-a *0 1 :: length + 1 ::
+a *0 1 :: length of array + 1 ::
 m 1
 alc *1
 @*0 *2
@@ -22,7 +21,6 @@ rel 1 8 :: skip 0th slot bc of return values ::
 e
 
 d --delArray
-@4 3
 m 0 :: array address ::
 a **0 0
 m 0
@@ -75,7 +73,7 @@ a **0 **1
 m 3 :: absolute item address ::
 a *3 1
 m 3
-@*3 **2
+@*3 **2 :: set value ::
 rel 0 9
 e
 

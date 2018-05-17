@@ -18,14 +18,10 @@ class Token:
     def __str__(self):
         return "{}\t{}".format(self.ty, self.v)
 
-# acc = [0,0]
-# # pointer stack
-# ptr = [0]
-# mem = []
+
 
 
 def setMem(l,mem,used):
-# size of memory!! to be adjustable LATER
     while len(mem)< l:
         mem.append(0)
         used.append(0)
@@ -193,10 +189,14 @@ def prs(tk, ptr, exp):
     elif tk[ptr[-1]].ty == "KEY" and tk[ptr[-1]].v == "o":
         ptr[-1] = ptr[-1] + 1
         val = prs(tk, ptr, ["NUM","ADD", "VAR"])
-        if acc[1] == 1:
-            sys.stdout.write(chr(val))
-        else:
-            sys.stdout.write(str(val))
+        sys.stdout.write(str(val))
+        sys.stdout.flush()
+        prs(tk, ptr,[])
+    # write ascii of value in address
+    elif tk[ptr[-1]].ty == "KEY" and tk[ptr[-1]].v == "w":
+        ptr[-1] = ptr[-1] + 1
+        val = prs(tk, ptr, ["NUM","ADD", "VAR"])
+        sys.stdout.write(chr(val))
         sys.stdout.flush()
         prs(tk, ptr,[])
     # conditional if x == y pass, else skip to next command
@@ -370,7 +370,7 @@ if __name__ == '__main__':
     mem = []
     used = []
     var = {}
-    setMem(10,mem, used)
+    setMem(50,mem, used)
     if len(sys.argv) == 1:
         text = ""
     else:

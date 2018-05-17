@@ -1,7 +1,4 @@
-
-:: now print works ::
-
-mem 45
+mem 45 :: set memory size to 45 slots ::
 inc lib/array
 inc lib/std
 :: load standard conventions which makes 
@@ -62,9 +59,7 @@ r ->putItem
 
 @$arg1 *$arr
 a $arg1 0
-w
-r ->print
-w
+r ->printSTR
 :: delete the array from mem. ::
 a $arg1 0
 r ->delArray

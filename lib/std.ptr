@@ -34,4 +34,20 @@ j ->loopPrint
 rel 0 9
 e
 
+:: print string, same as array, but ascii ::
+d --printSTR
+m 0
+a **0 1
+m 0 :: add one to the address of the array in memory ::
+--loopPrintSTR
+f **0 0
+j ->endPrintSTR
+w **0
+a *0 1
+m 0 
+j ->loopPrintSTR
+--endPrintSTR
+rel 0 9
+e
+
 --endSTD
