@@ -62,7 +62,7 @@ the function. An error is returned on empty call stack.
 
 ### Memory Management
 As seen earlier, memory is manually managed in PTR. The whole language is an excercise
-in layered pointers and respectful memory use, and while there is error penalty for memory
+in layered pointers and respectful memory use, and while there is no error penalty for memory
 leaks, overwriting data and leaving memory allocated is sad.
 
 By convention, the first 10 slots of memory are swap memory. If there is data you want to keep
