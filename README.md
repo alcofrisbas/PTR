@@ -71,9 +71,39 @@ to slots 10-15 called ```$arg1``` etc. This makes code easier to visualize. The 
 is up for grabs.
 
 The command ```alc <VALUE>``` returns the smallest continuous space in memory that is <VALUE> + 1 slots
-  in size. Functions by convention return values to the 0 slot. The command ```rel <VAL1> <VAL2>```
-  releases <VAL2> slots in memory staring with <VAR1>. The final memory command is ```ali```, which 
-  allocates a specific spot in memory. This is helpful for allocating data structures larger than
-  one slot in memory, like arrays, but should really only be used in lower level functions.
-  
-  
+in size. Functions by convention return values to the 0 slot. The command ```rel <VAL1> <VAL2>```
+releases <VAL2> slots in memory staring with <VAR1>. The final memory command is ```ali```, which 
+allocates a specific spot in memory. This is helpful for allocating data structures larger than
+one slot in memory, like arrays, but should really only be used in lower level functions.
+
+### Other files
+Including a file is fairly simple. ```inc folder/fileName``` #without the '.ptr'. The file is tokenized
+and added to the end of the tokens to be parsed and executed, so any code not in a function will be 
+executed. Jump statements can form simple ifguards.
+
+## Examples
+One example included in the ```lib``` folder is an implementation of a classic array. These
+functions allow the user to create and edit an array without *as* manually manipulating memory.
+Here is an excerpt:
+```
+j ->endArray
+d --makeArray
+m 0 :: first arg: length ::
+@0 **0 
+@2 *0
+:: now, find a chunk of memory big enough ::
+a *0 1 :: length of array + 1 ::
+m 1
+alc *1
+@*0 *2
+rel 1 8 :: skip 0th slot bc of return values ::
+e
+
+...
+--endArray
+```
+The jump statement at the top forms a rudimentary ifguard as mentioned above. The reason why
+the first command is a move statement is that I've loaded the address of the first argument
+into the accumulator. The first thing I do is get its value to work with. Then I allocate space
+I've coded arrays as an integer value for length followed by that many empty slots. The address
+of the array is returned, but not before slots 1-9 are released from working memory.
