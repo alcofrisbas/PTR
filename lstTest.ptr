@@ -1,0 +1,11 @@
+mem 50
+inc lib/list
+inc lib/std
+
+r ->stdCon
+
+alc 1
+$lst *0
+
+r ->makeList
+@$lst *0
