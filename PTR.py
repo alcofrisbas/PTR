@@ -80,7 +80,7 @@ def validMem(n):
     if n < lN:
         pass
     else:
-        print "invalid memory access attempt:", n
+        print ("invalid memory access attempt:"), n
         sys.exit(1)
 
 
@@ -95,7 +95,7 @@ def fnd(token):
         return int(token.v)
     elif token.ty == "VAR":
         if not var.get(token.v, False):
-            print "Error: variable: {} undefined".format(token.v)
+            print ("Error: variable: {} undefined".format(token.v))
             sys.exit(1)
         return var[token.v]
     elif token.ty == "ADD":
@@ -113,7 +113,7 @@ def prs(tk, ptr, exp):
         return
     # error check the expected token type
     if exp != [] and tk[ptr[-1]].ty not in exp:
-        print "error:", tk[ptr[-1]-1], "wanted", str(exp) 
+        print ("error:", tk[ptr[-1]-1], "wanted", str(exp) )
         sys.exit(1)
     # return a number
     if tk[ptr[-1]].ty == "NUM":
@@ -257,7 +257,7 @@ def prs(tk, ptr, exp):
         while tk[ptr[-1]].ty != "LBF" or tk[ptr[-1]].v != lbl:
             ptr[-1] = ptr[-1] + 1
             if ptr[-1] >= len(tk):
-                print "Error: function: {} not found".format(lbl)
+                print ("Error: function: {} not found".format(lbl))
                 sys.exit(1)
         prs(tk, ptr, [])
     # exit function: pop off pointer stack and resume at new 
@@ -267,7 +267,7 @@ def prs(tk, ptr, exp):
         if len(ptr) > 1:
             ptr.pop()
         else:
-            print "error:", tk[ptr[-1]], "illegal function exit"
+            print ("error:", tk[ptr[-1]], "illegal function exit")
         prs(tk, ptr, [])
     # set output mode to ascii or numerical
     elif tk[ptr[-1]].ty == "KEY" and tk[ptr[-1]].v == "w":
@@ -303,7 +303,7 @@ def prs(tk, ptr, exp):
                 freeCount += 1
             ind += 1
             if ind == len(used):
-                print "Error: not enough memory to allocate"
+                print ("Error: not enough memory to allocate")
                 sys.exit(1)
         mem[0] = ind-amount+1
         #print ind-amount
@@ -315,13 +315,13 @@ def prs(tk, ptr, exp):
         ptr[-1] = ptr[-1] + 1
         addr = prs(tk, ptr, ["NUM", "ADD"])
         if addr >= len(used):
-            print "No such memory exists!"
+            print ("No such memory exists!")
             sys.exit(1)
         if used[addr] == 1:
             #print used
             #print mem
             #print addr
-            print "Memory already allocated"
+            print ("Memory already allocated")
             sys.exit(1)
         else:
             used[addr] = 1
@@ -358,7 +358,7 @@ def run(fname):
         with open(fname) as f:
             text = f.read()
     except:
-        print "Error: {}: No such lib exists".format(fname)
+        print ("Error: {}: No such lib exists".format(fname))
         sys.exit(1)
     return text
 
@@ -382,7 +382,7 @@ if __name__ == '__main__':
         if sys.argv[2] == "-d":
             #slots = [i for i in range(len(mem))]
             #print slots
-            print used
-            print mem
+            print (used)
+            print (mem)
             #print acc
             #print var
